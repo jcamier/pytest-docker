@@ -8,7 +8,7 @@ COPY requirements.txt .
 
 RUN apt-get -y update && \
     apt-get -y upgrade && \
-    apt-get -y install wget git bzip2 vim
+    apt-get -y install wget bzip2 vim
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
@@ -26,7 +26,8 @@ USER root
 
 RUN mkdir projects
 
-COPY projects/hello_world.ipynb /projects
+#COPY projects/hello_world.ipynb /projects
+ADD projects /projects
 COPY start_jupyter.sh /projects
 WORKDIR /projects
 
