@@ -1,32 +1,16 @@
 FROM ubuntu:18.04
 
-MAINTAINER Jack Camier
+LABEL maintainer="Jack Camier"
 
-RUN apt-get update && apt-get install -yq \
-                        python3 python3-pip htop nano git wget \
-                        libglib2.0-0 autoconf automake \
-                        libtool build-essential unzip \
-                        libarchive-dev vim python-virtualenv
+RUN apt-get update && apt-get install -yq python3 python3-pip
 
-RUN mkdir /projects
-RUN cd /projects
-COPY requirements.txt .
+ADD requirements.txt .
 
-RUN virtualenv -p python3 /projects/py36
-RUN /bin/bash -c "source /projects/py36/bin/activate && pip install --upgrade pip"
-RUN /bin/bash -c "source /projects/py36/bin/activate && pip install -r requirements.txt"
-RUN /bin/bash -c "source /projects/py36/bin/activate && pip install jupyter"
-RUN cd /projects/py36/bin
+RUN pip3 install -r requirements.txt
 
-RUN echo "c.NotebookApp.allow_origin = '*'"
-RUN echo "c.NotebookApp.ip = '0.0.0.0'"
-RUN echo "c.NotebookApp.port = 8080"
-RUN echo "c.NotebookApp.token = ''"
-
-WORKDIR /projects
 EXPOSE 8080
-CMD ["py36/bin/jupyter-notebook", "--ip=0.0.0.0"]
+ADD start-script.sh .
 
-#ENV PATH="~/.local/bin/jupyter-notebook":$PATH
-#
+# RUN "jupyter notebook --ip=0.0.0.0 --port 8080 --allow-root --no-browser --NotebookApp.token='' --NotebookApp.password='' &"
 
+CMD start-script.sh

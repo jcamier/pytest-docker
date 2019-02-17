@@ -1,5 +1,4 @@
-## Docker image for this Tutorial
-docker build --tag pytest-docker .
+# Currently Jupyter not staying in running state after container start
 
-
-docker run -it -p 3000:8080 pytest-docker /bin/bash
+docker build -t pytest-docker .
+docker run -d -p 8080:8080 pytest-docker
