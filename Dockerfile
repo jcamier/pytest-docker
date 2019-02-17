@@ -1,32 +1,38 @@
-FROM ubuntu:18.04
+FROM python:3.6.8-jessie
 
 MAINTAINER Jack Camier
 
-RUN apt-get update && apt-get install -yq \
-                        python3 python3-pip htop nano git wget \
-                        libglib2.0-0 autoconf automake \
-                        libtool build-essential unzip \
-                        libarchive-dev vim python-virtualenv
+ENV LANG=C.UTF-8
 
-RUN mkdir /projects
-RUN cd /projects
 COPY requirements.txt .
 
-RUN virtualenv -p python3 /projects/py36
-RUN /bin/bash -c "source /projects/py36/bin/activate && pip install --upgrade pip"
-RUN /bin/bash -c "source /projects/py36/bin/activate && pip install -r requirements.txt"
-RUN /bin/bash -c "source /projects/py36/bin/activate && pip install jupyter"
-RUN cd /projects/py36/bin
+RUN apt-get -y update && \
+    apt-get -y upgrade && \
+    apt-get -y install wget git bzip2 vim
 
-RUN echo "c.NotebookApp.allow_origin = '*'"
-RUN echo "c.NotebookApp.ip = '0.0.0.0'"
-RUN echo "c.NotebookApp.port = 8080"
-RUN echo "c.NotebookApp.token = ''"
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+RUN pip install jupyter
 
+# Creating config file in /root/.jupyter and add custom settings
+RUN jupyter notebook --generate-config
+
+RUN echo "c.NotebookApp.allow_root = True" >> /root/.jupyter/jupyter_notebook_config.py
+RUN echo "c.NotebookApp.port = 8900" >> /root/.jupyter/jupyter_notebook_config.py
+RUN echo "c.NotebookApp.token = ''" >> /root/.jupyter/jupyter_notebook_config.py
+RUN echo "c.NotebookApp.ip = '0.0.0.0'" >> /root/.jupyter/jupyter_notebook_config.py
+
+USER root
+
+RUN mkdir projects
+
+COPY projects/hello_world.ipynb /projects
+COPY start_jupyter.sh /projects
 WORKDIR /projects
-EXPOSE 8080
-CMD ["py36/bin/jupyter-notebook", "--ip=0.0.0.0"]
 
-#ENV PATH="~/.local/bin/jupyter-notebook":$PATH
-#
+RUN chmod +x start_jupyter.sh
 
+EXPOSE 8900
+
+
+CMD ["./start_jupyter.sh"]
