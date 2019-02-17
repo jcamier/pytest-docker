@@ -35,5 +35,4 @@ RUN chmod +x start_jupyter.sh
 
 EXPOSE 8900
 
-
 CMD ["./start_jupyter.sh"]
