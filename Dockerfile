@@ -8,11 +8,12 @@ COPY requirements.txt .
 
 RUN apt-get -y update && \
     apt-get -y upgrade && \
-    apt-get -y install wget bzip2 vim
+    apt-get -y install wget git bzip2 vim
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install jupyter
+RUN pip install ipytest
 
 # Creating config file in /root/.jupyter and add custom settings
 RUN jupyter notebook --generate-config

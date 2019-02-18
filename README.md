@@ -10,7 +10,7 @@ docker build --tag pytest-docker .
 ###### installs Jupyter in directory /usr/local/bin
 
 ## To start jupyter notebook
-docker run -it -p 3000:8900 pytest-docker
+docker run -it -p 3000:8900 pytest-docker:latest
 ###### first port is local port, second port is docker port
 
 ## Go to
@@ -33,7 +33,7 @@ http://192.168.99.100:3000/
 
 
 ##### To access container using bash
-docker run -it -p 3000:8900 pytest-docker /bin/bash
+docker run -it -p 3000:8900 pytest-docker:latest /bin/bash
 
 ##### To access container using sh
-docker run -it -p 3000:8900 pytest-docker /bin/sh
+docker run -it -p 3000:8900 pytest-docker:latest /bin/sh
