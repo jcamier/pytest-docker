@@ -25,7 +25,7 @@ http://localhost:3000/
 ### dos2unix start_jupyter.sh
 ### docker build --tag pytest-docker .
 ### docker run -it -p 3000:8900 pytest-docker
-http://localhost:3000/
+http://192.168.99.100:3000/
 
 
 
