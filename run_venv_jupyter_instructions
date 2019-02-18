@@ -1,0 +1,10 @@
+activate your virtual environment, in my case I called it venv-pytest-dock
+
+pip install ipytest ipykernel
+
+ipython kernel install --name "venv-pytest-dock" --display-name "Python36 (pytest)" --user
+
+jupyter notebook
+
+Switch to your new kernel
+
