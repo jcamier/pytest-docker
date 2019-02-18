@@ -20,14 +20,16 @@ http://localhost:3000/
 ### Run Docker Toolbox as administrator
 ### cd C:\Program Files\Docker Toolbox
 ### git clone https://github.com/jcamier/pytest-docker.git
+### Go to your virtual box settings
+### Network/Adapter 1 choose Attached to NAT
+### Under advanced click Port Forwarding
+### Add a Rule Host Port 3000 Guest Port 8900
 ### Launch docker toolbox
 ### cd pytest-docker
 ### dos2unix start_jupyter.sh
 ### docker build --tag pytest-docker .
 ### docker run -it -p 3000:8900 pytest-docker
-http://192.168.99.100:3000/
-
-
+http://192.168.99.100:3000/ 
 
 
 ##### To access container using bash
