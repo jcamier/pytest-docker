@@ -5,7 +5,6 @@ pip install ipytest ipykernel
 
 ipython kernel install --name "venv-pytest-dock" --display-name "Python36 (pytest)" --user
 
-jupyter notebook
 
 # Switch to your new kernel in your Jupyter notebook
 
