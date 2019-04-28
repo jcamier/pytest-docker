@@ -6,6 +6,7 @@ ENV LANG=C.UTF-8
 
 COPY requirements.txt .
 
+
 RUN apt-get -y update && \
     apt-get -y upgrade && \
     apt-get -y install wget git bzip2 vim
@@ -26,9 +27,12 @@ RUN echo "c.NotebookApp.ip = '0.0.0.0'" >> /root/.jupyter/jupyter_notebook_confi
 USER root
 
 RUN mkdir projects
+RUN mkdir images
 
 #COPY projects/hello_world.ipynb /projects
 ADD projects /projects
+RUN chmod 755 /projects
+ADD images /images
 COPY start_jupyter.sh /projects
 WORKDIR /projects
 
