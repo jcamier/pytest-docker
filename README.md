@@ -1,6 +1,6 @@
 # This is a Pytest series using Jupyter Notebooks. The .ipynb's are found in the projects folder. 
 
-## Or if you want, you can git clone this project and run them in a docker container. Instructions below:
+## Or, you can git clone this project and run them in a docker container. Instructions below:
 
 ## Linux/Mac Users
 #### git clone repo
