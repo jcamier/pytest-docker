@@ -35,11 +35,14 @@ first navigate to root of directory app and install necessary libs using command
 
 >npm install  
 
-then run the server using command  
+assuming all the django dependencies are installed then run the server using command  
 
->python manage.py runserver  
+>python manage.py make migrations  
+>python manage.py migrate  
+>python manage.py runserver    
 
 then open another terminal and navigate to root of directory app and run the following command to generate test results  
+
 >npm test  
 
 if you want to test results upon changing the code , the following command can be used  
