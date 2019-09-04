@@ -41,3 +41,19 @@ docker run -it -p 3000:8900 pytest-docker:latest /bin/bash
 
 ##### To access container using sh
 docker run -it -p 3000:8900 pytest-docker:latest /bin/sh
+
+##### To build dockerized rabbitmq service
+docker build -t rabbitmq-test:latest -f Dockerfile.rmq .
+
+##### To run the rabbitmq service with args
+docker run \
+-p 8080:15672 \
+-p 5672:5672 \
+-i -t rabbitmq-test:latest
+
+<hr>
+Go to http://localhost:8080 to see RabbitMQ Service
+Username: guest
+Password: guest
+
+
