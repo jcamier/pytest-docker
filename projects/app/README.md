@@ -29,15 +29,20 @@ https://pragprog.com/book/bopytest/python-testing-with-pytest
 
 After creating app, go to http://localhost:8000/api/leads/  
 
+# Initialize the virtualenv
+
+source venv-pytest-dock/bin/activate
+
 # To Run Test  
 
 first navigate to root of directory app and install necessary libs using command  
 
->npm install  
+>npm install 
 
+ 
 assuming all the django dependencies are installed then run the server using command  
 
->python manage.py make migrations  
+>python manage.py makemigrations  
 >python manage.py migrate  
 >python manage.py runserver    
 

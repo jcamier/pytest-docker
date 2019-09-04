@@ -2,3 +2,4 @@ venv-pytest-dock*
 .idea*
 projects/.ipynb_checkpoints*
 projects/.pytest_cache*
+*.pytest_cache
